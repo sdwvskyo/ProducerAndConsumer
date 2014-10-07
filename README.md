@@ -3,15 +3,7 @@ ProducerAndConsumer
 
 #运行方式  
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-$ make  
-=======
-$ make   
->>>>>>> FETCH_HEAD
-=======
-$ make   
->>>>>>> FETCH_HEAD
+$ make
 $ ./a.out
 
 #主要功能
