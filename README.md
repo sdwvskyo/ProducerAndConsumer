@@ -1,8 +1,9 @@
 ThreadPool
 ==========
 
-#运行方式
-$ make
+#运行方式  
+
+$ make   
 $ ./a.out
 
 #主要功能
