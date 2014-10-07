@@ -16,7 +16,7 @@ MutexLock::~MutexLock()
 
 void MutexLock::lock()
 {
-	TINY_CHECK(pthread_mutex_lock(&mutex_));
+	TINY_CHECK(!pthread_mutex_lock(&mutex_));
 	isLocked_ = true;
 }
 

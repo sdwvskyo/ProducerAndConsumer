@@ -10,16 +10,17 @@ class Thread : NonCopyable
 {
 public:
 	Thread();
-	~Thread();
+	virtual ~Thread();
 
 	void start();
 	void join();
 
-	virtual void run();
-
+	virtual void run() = 0;
+	
+	pthread_t getThreadId() const { return threadId_; }
 private:
 	//静态函数没有隐士的this指针，可以用作thread函数,但是静态函数没有
-	static void * threadFunc(void *);
+	static void * threadFunc(void *arg);
 
 	pthread_t threadId_;
 	bool isStarted_;

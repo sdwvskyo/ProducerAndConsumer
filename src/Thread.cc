@@ -1,10 +1,7 @@
 #include "Thread.h"
 #include <unistd.h>
 #include <assert.h>
-#include <sys/syscall.h> 	//For SYS_XXX definitions
-#include <iostream>
-
-using namespace std;
+#include "MutexLock.h"
 
 Thread::Thread()
 	: threadId_(0), 
@@ -16,21 +13,21 @@ Thread::Thread()
 Thread::~Thread()
 {
 	if(isStarted_) {
-		pthread_detach(threadId_);
+		TINY_CHECK(!pthread_detach(threadId_));
 	}
 }
 
 void Thread::start()
 {
 	//使用线程作为线程执行函数，但是静态函数没有自己的数据成员，必须传入this指针操作数据
-	pthread_create(&threadId_, NULL, Thread::threadFunc, (void *)this);
+	TINY_CHECK(!pthread_create(&threadId_, NULL, Thread::threadFunc, (void *)this));
 	isStarted_ = true;
 }
 
 void Thread::join()
 {
 	assert(isStarted_);
-	pthread_join(threadId_, NULL);
+	TINY_CHECK(!pthread_join(threadId_, NULL));
 	isStarted_ = false;
 }
 

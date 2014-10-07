@@ -16,7 +16,7 @@ Condition::~Condition()
 void Condition::wait()
 {
 	//wait前先确定是否上锁
-	assert(mutex_.isLocked());
+	//assert(mutex_.isLocked());
 	TINY_CHECK(!pthread_cond_wait(&cond_, mutex_.getMutexPtr()));
 }
 

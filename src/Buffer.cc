@@ -13,25 +13,39 @@ Buffer::~Buffer()
 
 }
 
-void Buffer::pushTask(const Msg &msg)
+void Buffer::push(const Msg &msg)
 {
-	mutex_.lock();
-	while(queue_.size() >= max_)
-		empty_.wait();
-	queue_.push(msg);
+	{
+		MutexLockGuard lock(mutex_);
+		while(queue_.size() >= max_)
+			empty_.wait();
+		queue_.push(msg);
+	}
 	full_.notify();
-	mutex_.unlock();
 }
 
-Msg Buffer::popTask()
+Msg Buffer::pop()
 {
-	mutex_.lock();
-	while(queue_.empty())
-		full_.wait();
-	Msg msg = queue_.front();
-	queue_.pop();
+	Msg msg;
+	{
+		MutexLockGuard lock(mutex_);
+		while(queue_.empty())
+			full_.wait();
+		msg = queue_.front();
+		queue_.pop();
+	}
 	empty_.notify();
-	mutex_.unlock();
 	return msg;
 }
 
+bool Buffer::isEmpty() const 
+{
+	MutexLockGuard lock(mutex_);
+	return queue_.empty(); 
+}
+
+size_t Buffer::size() const 
+{ 
+	MutexLockGuard lock(mutex_);
+	return queue_.size(); 
+}

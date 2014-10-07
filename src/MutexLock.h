@@ -28,4 +28,14 @@ private:
 	bool isLocked_;
 };
 
+class MutexLockGuard : NonCopyable
+{
+public:
+	MutexLockGuard(MutexLock &mutex) : mutex_(mutex)
+	{ mutex_.lock(); }
+	~MutexLockGuard() { mutex_.unlock(); }
+private:
+	MutexLock &mutex_;
+};
+
 #endif  /*MUTEXLOCK_H_*/
