@@ -2,6 +2,8 @@
 #include "MutexLock.h"
 #include <assert.h>
 
+using namespace Tiny;
+
 Condition::Condition(MutexLock &mutex)
 	: mutex_(mutex)
 {

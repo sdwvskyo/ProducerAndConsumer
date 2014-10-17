@@ -1,6 +1,7 @@
 #include "WorkShop.h"
 
 using namespace std;
+using namespace Tiny;
 
 int main(int argc, const char *argv[])
 {

@@ -3,9 +3,19 @@
 #include <assert.h>
 #include "MutexLock.h"
 
+using namespace Tiny;
+
 Thread::Thread()
 	: threadId_(0), 
 	  isStarted_(false)
+{
+	
+}
+
+Thread::Thread(const ThreadCallback &callback)
+	: threadId_(0),
+	  isStarted_(false),
+	  callback_(callback)
 {
 	
 }
@@ -15,6 +25,11 @@ Thread::~Thread()
 	if(isStarted_) {
 		TINY_CHECK(!pthread_detach(threadId_));
 	}
+}
+
+void Thread::setCallback(const ThreadCallback &callback)
+{
+	callback_ = callback;
 }
 
 void Thread::start()
@@ -35,7 +50,8 @@ void Thread::join()
 void * Thread::threadFunc(void * arg)
 {
 	Thread *pt = static_cast<Thread *>(arg);
-	pt->run();
+	assert(pt->callback_);
+	pt->callback_();
 	return NULL;
 }
 

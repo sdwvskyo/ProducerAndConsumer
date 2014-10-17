@@ -1,21 +1,28 @@
 #ifndef THREAD_H_
 #define THREAD_H_ 
 
-#include "NonCopyable.h"
+#include "boost/noncopyable.hpp"
 #include <pthread.h>
 #include <functional>
 #include <sys/types.h>
 
-class Thread : NonCopyable
+namespace Tiny
+{
+class Thread : boost::noncopyable
 {
 public:
+	typedef std::function<void ()> ThreadCallback;
+
 	Thread();
-	virtual ~Thread();
+	explicit Thread(const ThreadCallback &callback);
+	~Thread();
+
+	void setCallback(const ThreadCallback &callback);
 
 	void start();
 	void join();
 
-	virtual void run() = 0;
+	// virtual void run() = 0;
 	
 	pthread_t getThreadId() const { return threadId_; }
 private:
@@ -24,6 +31,8 @@ private:
 
 	pthread_t threadId_;
 	bool isStarted_;
+	ThreadCallback callback_;	//回调函数
 };
+}
 
 #endif  /*THREAD_H_*/

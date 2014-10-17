@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <stdio.h>
 
+using namespace Tiny;
+
 Consumer::Consumer(Buffer &buffer)
 	: buffer_(buffer)
 {

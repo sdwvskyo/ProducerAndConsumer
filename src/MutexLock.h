@@ -11,6 +11,8 @@
 	{ fprintf(stderr, "File:%s, Line:%d Exp:[" #exp "] is true, abort.\n", \
 				__FILE__, __LINE__); abort(); }
 
+namespace Tiny
+{
 class MutexLock : NonCopyable 
 {
 public:
@@ -37,5 +39,5 @@ public:
 private:
 	MutexLock &mutex_;
 };
-
+}
 #endif  /*MUTEXLOCK_H_*/

@@ -1,6 +1,8 @@
 #include "MutexLock.h"
 #include <assert.h>
 
+using namespace Tiny;
+
 MutexLock::MutexLock()
 	: isLocked_(false)
 {

@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+using namespace Tiny;
+
 Producer::Producer(Buffer &buffer)
 	:buffer_(buffer)
 {

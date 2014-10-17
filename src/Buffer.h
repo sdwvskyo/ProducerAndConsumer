@@ -6,8 +6,9 @@
 #include "MutexLock.h"
 #include "Condition.h"
 
+namespace Tiny
+{
 typedef int Msg;
-
 class Buffer
 {
 public:
@@ -29,5 +30,5 @@ private:
 	size_t max_;
 	std::queue<Msg> queue_;
 };
-
+}
 #endif  /*BUFFER_H_*/

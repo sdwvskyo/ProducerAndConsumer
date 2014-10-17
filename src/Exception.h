@@ -4,6 +4,8 @@
 #include <exception>
 #include <string>
 
+namespace Tiny
+{
 class Exception : public std::exception
 {
 public:
@@ -20,5 +22,6 @@ private:
 	std::string message_;
 	std::string stack_;
 };
+}
 
 #endif  /*EXCEPTION_H_*/

@@ -5,6 +5,9 @@
 #include "Buffer.h"
 #include <vector>
 
+namespace Tiny
+{
+	
 class Producer;
 class Consumer;
 
@@ -26,7 +29,7 @@ private:
 	std::vector<Producer *> producers_;
 	std::vector<Consumer *> consumers_;
 };
-
+}
 #endif  /*WORKSHOP_H_*/
 
 

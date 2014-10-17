@@ -2,6 +2,9 @@
 #include "Producer.h"
 #include "Consumer.h"
 
+using namespace std;
+using namespace Tiny;
+
 WorkShop::WorkShop(size_t bufferSize,
 				   size_t producerSize,
 				   size_t consumerSize)

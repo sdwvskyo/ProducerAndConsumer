@@ -3,6 +3,8 @@
 
 #include "MutexLock.h"
 
+namespace Tiny
+{
 //单例模式：确保一个类只有一个实例，且提供全局访问
 class Singleton
 {
@@ -19,7 +21,7 @@ private:
 			
 };
 
-Singleton *Singleton::pInstance = NULL;
+Singleton *Singleton::pInstance_ = NULL;
 MutexLock Singleton::mutex_;
 
 
@@ -34,5 +36,5 @@ Singleton *Singleton::getInstance()
 	}
 	return pInstance_;
 }
-
+}
 #endif  /*SINGLETON_H_*/

@@ -4,6 +4,9 @@
 #include <pthread.h>
 #include "NonCopyable.h"
 
+namespace Tiny
+{
+	
 class MutexLock;
 
 class Condition : NonCopyable
@@ -17,9 +20,8 @@ public:
 	void notifyAll();
 
 private:
-	pthread_cond_t cond_;
 	MutexLock &mutex_;
-		
+	pthread_cond_t cond_;	
 };
-
+}
 #endif  /*CONDITION_H_*/

@@ -1,6 +1,7 @@
 #include "Buffer.h"
 
 using namespace std;
+using namespace Tiny;
 
 Buffer::Buffer(size_t max)
 	: full_(mutex_), empty_(mutex_), max_(max)

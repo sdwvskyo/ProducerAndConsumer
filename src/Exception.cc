@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <cxxabi.h>
 
+using namespace Tiny;
+
 Exception::Exception(const char *msg)
 	: message_(msg)
 {
